@@ -4,5 +4,3 @@ menuToggle.addEventListener("click", function() {
   siteNav.classList.toggle("site-nav--open");
   this.classList.toggle("menu-toggle--open");
 });
-
-console.log(menuToggle);

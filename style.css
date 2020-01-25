@@ -26,6 +26,7 @@ header {
   position: relative;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 header .logo {
@@ -45,6 +46,14 @@ header .logo {
   right: 0.5rem;
   top: 0.5rem;
   cursor: pointer;
+}
+
+.menu-toggle:focus {
+  outline: 4px solid #ebebd3;
+}
+
+.menu-toggle::-moz-focus-inner {
+  border: none;
 }
 
 .hamburger,
@@ -96,49 +105,32 @@ header .logo {
   background-color: #464655;
   top: 100%;
   right: 0px;
-  overflow: hidden;
-  transform: translateY(-100%);
-  z-index: -1;
+  clip-path: circle(0px at top right);
+  transition: clip-path 700ms linear;
+  height: calc(100vh - 52px);
+  width: 100vw;
+}
 
-  transition: transform 500ms linear;
+.site-nav a {
+  font-weight: 900;
 }
 
 .site-nav--open {
-  transform: translateY(0%);
-  z-index: 2;
-  animation: dropdown 500ms linear 1;
-}
-
-@keyframes dropdown {
-  0% {
-    transform: translateY(-100%);
-    z-index: -1;
-  }
-
-  50% {
-    transform: translateY(-50%);
-    z-index: -1;
-  }
-
-  99% {
-    transform: translateY(-1%);
-    z-index: -1;
-  }
-
-  100% {
-    transform: translateY(0%);
-    z-index: 2;
-  }
+  clip-path: circle(1200px at top right);
 }
 
 .site-nav ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .site-nav li {
   border-bottom: 1px solid #575766;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .site-nav li:last-child {
@@ -147,18 +139,21 @@ header .logo {
 
 .site-nav a {
   text-transform: uppercase;
-  display: block;
+  /* display: block; */
   padding: 2rem 4rem 2rem 3rem;
   color: #ebebd3;
   outline: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: transform 250ms linear, color 250ms linear,
     background-color 250ms linear;
+  width: 100%;
 }
 
 .site-nav a:hover,
-.site-nav a:focus {
+.site-nav a:focus,
+.site-nav a:active {
   background-color: #e4b363;
   color: #464655;
   transform: scale(1.02);
@@ -181,6 +176,8 @@ header .logo {
     position: relative;
     transform: none;
     background-color: transparent;
+    clip-path: none;
+    width: auto;
   }
 
   .site-nav ul {
